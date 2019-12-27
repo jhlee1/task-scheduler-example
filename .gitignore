@@ -4,6 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+.DS_Store
 
 ### STS ###
 .apt_generated
@@ -21,6 +22,7 @@ build/
 *.iml
 *.ipr
 out/
+target/
 
 ### NetBeans ###
 /nbproject/private/

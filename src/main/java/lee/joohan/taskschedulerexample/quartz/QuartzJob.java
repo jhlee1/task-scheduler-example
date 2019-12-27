@@ -1,6 +1,7 @@
-package lee.joohan.taskschedulerexample.jobs;
+package lee.joohan.taskschedulerexample.quartz;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.batch.core.Job;
@@ -16,7 +17,8 @@ import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 @Data
-public class CustomQuartzJob extends QuartzJobBean {
+@Slf4j
+public class QuartzJob extends QuartzJobBean {
     private String jobName;
     private JobLauncher jobLauncher;
     private JobLocator jobLocator;
@@ -31,7 +33,7 @@ public class CustomQuartzJob extends QuartzJobBean {
 
             jobLauncher.run(job, params);
         } catch (NoSuchJobException | JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException e) {
-            e.printStackTrace();
+            log.error("Exception occured while executing quartz job. ", e);
         }
     }
 }
